@@ -57,6 +57,7 @@ private:
      float max_val_f = 3.7;
 };
 
+//funcion utilizada para crear componente dependiendo del tipo que se escoga en el main (o(1))
 componente componente::crearComponente(int tipo) {
     componente comp;
 
@@ -78,6 +79,7 @@ componente componente::crearComponente(int tipo) {
     return comp;
 }
 
+//funcion que ordena los obejtos componente dependiendo del tipo de atributo del objeto (o(1))
 bool componente::sortByAttribute(const componente& a, const componente& b, int attribute){
  
     if (attribute == 1) {
