@@ -33,7 +33,7 @@ int main(){
 
         //este algoritmo de ordenamiento "list::sort" es una version del algoritmo merge sort, por lo que tiene una complejidad de (O(n log n))
         componentes.sort([sortNum,orden](const componente& a, const componente& b) {
-            return componente::sortByAttribute_LTG(a, b, sortNum,orden);
+            return componente::sortByAttribute(a, b, sortNum,orden);
         });
 
 
@@ -60,7 +60,7 @@ int main(){
 
         //este algoritmo de ordenamiento "std::sort" es una version del algoritmo quicksort, por lo que tiene una complejidad de (O(n log n))
         componentes.sort([sortNum,orden](const componente& a, const componente& b) {
-            return componente::sortByAttribute_LTG(a, b, sortNum,orden);
+            return componente::sortByAttribute(a, b, sortNum,orden);
         });
 
 

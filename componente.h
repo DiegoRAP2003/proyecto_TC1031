@@ -16,7 +16,7 @@ public:
     componente crearComponente(int tipo);
 
     //funicion para sortear los objetos por atributo
-    static bool sortByAttribute_LTG(const componente& a, const componente& b, int attribute, bool);
+    static bool sortByAttribute(const componente& a, const componente& b, int attribute, bool);
     
     std::string toString(int tipo){
         ostringstream str;
@@ -80,7 +80,7 @@ componente componente::crearComponente(int tipo) {
 }
 
 //funcion que ordena los obejtos componente dependiendo del tipo de atributo del objeto (o(1))
-bool componente::sortByAttribute_LTG(const componente& a, const componente& b, int attribute, bool orden){
+bool componente::sortByAttribute(const componente& a, const componente& b, int attribute, bool orden){
  
     if(orden){
         if (attribute == 1) {
