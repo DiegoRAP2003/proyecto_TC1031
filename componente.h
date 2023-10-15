@@ -16,14 +16,14 @@ public:
     componente crearComponente(int tipo);
 
     //funicion para sortear los objetos por atributo
-    static bool sortByAttribute(const componente& a, const componente& b, int attribute);
+    static bool sortByAttribute_LTG(const componente& a, const componente& b, int attribute, bool);
     
     std::string toString(int tipo){
         ostringstream str;
         if(tipo == 2){
-            str<< "Name: "<< nameProcesador << "|| Price: " << price << "|| Year: " << year << "|| Frequency: " << frequency << "|| Temperature: " << temp;
+            str<< "Name: "<< nameProcesador << " || Price: " << price << " || Year: " << year << " || Frequency: " << frequency << " || Temperature: " << temp;
         }else{
-            str<<"|| Price: " << price << "|| Year: " << year;
+            str<<" || Price: " << price << " || Year: " << year;
         }
         std::string str1 = str.str();
         return str1;
@@ -80,16 +80,28 @@ componente componente::crearComponente(int tipo) {
 }
 
 //funcion que ordena los obejtos componente dependiendo del tipo de atributo del objeto (o(1))
-bool componente::sortByAttribute(const componente& a, const componente& b, int attribute){
+bool componente::sortByAttribute_LTG(const componente& a, const componente& b, int attribute, bool orden){
  
-    if (attribute == 1) {
-        return a.year < b.year;
-    } else if (attribute == 2) {
-        return a.price < b.price;
-    } else if (attribute == 3) {
-        return a.temp < b.temp;
-    }else if(attribute == 4){
-         return a.frequency < b.frequency;
+    if(orden){
+        if (attribute == 1) {
+            return a.year < b.year;
+        } else if (attribute == 2) {
+            return a.price < b.price;
+        } else if (attribute == 3) {
+            return a.temp < b.temp;
+        }else if(attribute == 4){
+            return a.frequency < b.frequency;
+        }
+    }else{
+        if (attribute == 1) {
+            return a.year > b.year;
+        } else if (attribute == 2) {
+            return a.price > b.price;
+        } else if (attribute == 3) {
+            return a.temp > b.temp;
+        }else if(attribute == 4){
+            return a.frequency > b.frequency;
+        }
     }
     return false; 
 }
