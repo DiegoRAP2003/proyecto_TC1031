@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include "componente.h"
+#include <fstream>
 
 using namespace std;
 
@@ -12,38 +13,43 @@ int main(){
     list<componente> componentes;
 
     cout<<"Escoga una opcion"<<endl<<"-----------------"<<endl;
-    cout<<"1. Componentes en general"<<endl<<"2. Procesadores"<<endl;
+    cout<<"1. GPUs"<<endl<<"2. Procesadores"<<endl;
     cin>>opcion;
 
     if(opcion == 1){
-        //este ciclo for crea componentes teniendo el cuenta el tipo que se la paso arriba, tiene una complejidad de (O(n)), aunque en ete caso en concreto, realmente seria (O(1)) ya que e hace un numero contante de iteraciones 
-        for(int i = 0; i < 6; i++){
-            componente comp = comp.crearComponente(opcion);
+            
+        std::ifstream archivo("input_gpu.txt");
+        std::ifstream archivo_names("input_gpu_names.txt");
+
+        std::string name;
+        int year, price, max_g, clock_s;
+
+        while(archivo >> year >> price >> max_g >> clock_s && getline(archivo_names,name)){
+            componente comp(name,year,price,max_g,clock_s);
             componentes.push_back(comp);
         }
 
         cout<< "Desea ordenarlos por: "<<endl<<"-----------------"<<endl;
-        cout<< "1. Anio"<<endl<<"2. Precio"<<endl;
+        cout<< "1. Anio"<<endl<<"2. Precio"<<endl<< "3. Graficas maximas que alcanza"<<endl<<"4. Clock Speed"<<endl;
         cin>>sortNum;
 
         cout<< "Desea ordenarlos de menor a mayor?: "<<endl<<"-----------------"<<endl;
-        cout<< "Digite 0 para Si"<<endl<<"DIgite 1 para No"<<endl;
+        cout<< "Digite 0 para Si"<<endl<<"Digite 1 para No"<<endl;
         cin>>orden;
-
 
         //este algoritmo de ordenamiento "list::sort" es una version del algoritmo merge sort, por lo que tiene una complejidad de (O(n log n))
         componentes.sort([sortNum,orden](const componente& a, const componente& b) {
-            return componente::sortByAttribute(a, b, sortNum,orden);
+            return componente::sortByAttributeGPU(a, b, sortNum,orden);
         });
-
-
 
         //este ciclo for crea imprime los atributos de los componentes, tiene una complejidad de (O(n)) 
         for(componente& componente : componentes){
             cout << componente.toString(opcion)<<endl;
         }
+        
 
-    }else if(opcion == 2){
+    }/*
+    else if(opcion == 2){
         //este ciclo for crea componentes teniendo el cuenta el tipo que se la paso arriba, tiene una complejidad de (O(n)), aunque en ete caso en concreto, realmente seria (O(1)) ya que e hace un numero contante de iteraciones 
         for(int i = 0; i < 6; i++){
             componente comp = comp.crearComponente(opcion);
@@ -60,7 +66,7 @@ int main(){
 
         //este algoritmo de ordenamiento "std::sort" es una version del algoritmo quicksort, por lo que tiene una complejidad de (O(n log n))
         componentes.sort([sortNum,orden](const componente& a, const componente& b) {
-            return componente::sortByAttribute(a, b, sortNum,orden);
+            return componente::sortByAttributeProcesador(a, b, sortNum,orden);
         });
 
 
@@ -70,7 +76,7 @@ int main(){
         }
     }
 
-
+*/
 }
 
 /*

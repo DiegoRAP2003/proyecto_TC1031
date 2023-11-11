@@ -12,18 +12,24 @@ class componente {
 public:
     componente() {};
 
-    //funcion para crear un vector de componentes
+    //constructor componente procesador
+    componente(std::string n,int y, int p, float t, float f);
+
+    componente(std::string n,int y, int p, int max_g, int c_s);
+
+    //funcion para crear un vector de componentes con atributos aleatorios
     componente crearComponente(int tipo);
 
     //funicion para sortear los objetos por atributo
-    static bool sortByAttribute(const componente& a, const componente& b, int attribute, bool);
+    static bool sortByAttributeProcesador(const componente& a, const componente& b, int attribute, bool);
+    static bool sortByAttributeGPU(const componente& a, const componente& b, int attribute, bool);
     
     std::string toString(int tipo){
         ostringstream str;
         if(tipo == 2){
             str<< "Name: "<< nameProcesador << " || Price: " << price << " || Year: " << year << " || Frequency: " << frequency << " || Temperature: " << temp;
-        }else{
-            str<<" || Price: " << price << " || Year: " << year;
+        }if(tipo == 1){
+            str<< "Name:   "<< nameGPU << "   || Price: " << price << " || Year: " << year << " || Max Graphics: " << max_graphics << " || Clock Speed(MHz): " << clock_speed;
         }
         std::string str1 = str.str();
         return str1;
@@ -44,43 +50,34 @@ private:
     float temp;
     float frequency;
     std::string nameProcesador;
-    std::vector<std::string> names = {"i5" , "i7" , "i9", "i10"};
 
-    // minimos y maximo para generar valores aleatorios
-     int min_val_y = 2018;
-     int max_val_y = 2023;
-     int min_val_p = 100;
-     int max_val_p = 400;
-      float min_val_t = 27.0;
-     float max_val_t = 42.0;
-     float min_val_f = 1.2;
-     float max_val_f = 3.7;
+    //atributos de tarjeta grafica
+    int max_graphics; 
+    int clock_speed;
+    std::string nameGPU;
+
+
+
 };
 
-//funcion utilizada para crear componente dependiendo del tipo que se escoga en el main (o(1))
-componente componente::crearComponente(int tipo) {
-    componente comp;
+componente::componente(std::string n,int y, int p, float t, float f){
+    year = y;
+    price = p;
+    temp = t;
+    frequency = f;
+    nameProcesador = n;
+}
 
-    // declarar los atributos comunes
-    comp.year = comp.min_val_y + rand() % (comp.max_val_y - comp.min_val_y + 1);
-    comp.price = comp.min_val_p + rand() % (comp.max_val_p - comp.min_val_p + 1);
-
-    if (tipo == 1) {
-        return comp;
-    } else if (tipo == 2) {
-        // declarar los atributos de procesador
-        comp.temp = comp.min_val_t + (static_cast<float>(rand()) / RAND_MAX) * (comp.max_val_t - comp.min_val_t);
-        comp.frequency = comp.min_val_f + (static_cast<float>(rand()) / RAND_MAX) * (comp.max_val_f - comp.min_val_f);
-        int randomIndex = rand() % names.size();
-        comp.nameProcesador = names[randomIndex];
-    }
-    //se agregaran diferentes componentes
-
-    return comp;
+componente::componente(std::string n,int y, int p, int max_g, int c_s){
+    year = y;
+    price = p;
+    max_graphics = max_g;
+    clock_speed = c_s;
+    nameGPU = n;
 }
 
 //funcion que ordena los obejtos componente dependiendo del tipo de atributo del objeto (o(1))
-bool componente::sortByAttribute(const componente& a, const componente& b, int attribute, bool orden){
+bool componente::sortByAttributeProcesador(const componente& a, const componente& b, int attribute, bool orden){
  
     if(orden){
         if (attribute == 1) {
@@ -101,6 +98,32 @@ bool componente::sortByAttribute(const componente& a, const componente& b, int a
             return a.temp > b.temp;
         }else if(attribute == 4){
             return a.frequency > b.frequency;
+        }
+    }
+    return false; 
+}
+
+bool componente::sortByAttributeGPU(const componente& a, const componente& b, int attribute, bool orden){
+ 
+    if(!orden){
+        if (attribute == 1) {
+            return a.year < b.year;
+        } else if (attribute == 2) {
+            return a.price < b.price;
+        } else if (attribute == 3) {
+            return a.max_graphics < b.max_graphics;
+        }else if(attribute == 4){
+            return a.clock_speed < b.clock_speed;
+        }
+    }else{
+        if (attribute == 1) {
+            return a.year > b.year;
+        } else if (attribute == 2) {
+            return a.price > b.price;
+        } else if (attribute == 3) {
+            return a.max_graphics > b.max_graphics;
+        }else if(attribute == 4){
+            return a.clock_speed > b.clock_speed;
         }
     }
     return false; 
