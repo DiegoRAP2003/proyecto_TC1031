@@ -30,4 +30,18 @@ with open('input_gpu_names.txt', 'w') as file:
         name = random.choice(nombres_gpu)
 
         file.write(f"{name}\n")
+
+# Lista de nombres procesador
+nombres_procesador = ["i3" , "i5" , "i9" , "i10", "Ryzen9" , "Ryzen7" , "Ryzen5"]
+
+# Generar datos aleatorios
+with open('input_procesador.txt', 'w') as file:
+    for _ in range(100):
+        name = random.choice(nombres_procesador)
+        year = random.randint(2018, 2023)
+        price = random.randint(100, 600)
+        frequency = random.choice([3.5, 4.0, 4.5, 5.0])
+        temperature = round(random.uniform(30, 85), 2)
+
+        file.write(f"{name} {year} {price} {temperature} {frequency}\n")
         

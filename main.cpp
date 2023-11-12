@@ -24,6 +24,7 @@ int main(){
         std::string name;
         int year, price, max_g, clock_s;
 
+        //ciclo para leer los datos de los archivos input de procesadores y nombres y crea los objetos componente
         while(archivo >> year >> price >> max_g >> clock_s && getline(archivo_names,name)){
             componente comp(name,year,price,max_g,clock_s);
             componentes.push_back(comp);
@@ -42,17 +43,24 @@ int main(){
             return componente::sortByAttributeGPU(a, b, sortNum,orden);
         });
 
-        //este ciclo for crea imprime los atributos de los componentes, tiene una complejidad de (O(n)) 
+        ofstream archivo_output("output.txt");
+
+        //este ciclo escribe la informacion de los objetos ya ordenados en un archivo .txt
         for(componente& componente : componentes){
-            cout << componente.toString(opcion)<<endl;
+            archivo_output << componente.toString(opcion)<<endl;
         }
         
 
-    }/*
-    else if(opcion == 2){
-        //este ciclo for crea componentes teniendo el cuenta el tipo que se la paso arriba, tiene una complejidad de (O(n)), aunque en ete caso en concreto, realmente seria (O(1)) ya que e hace un numero contante de iteraciones 
-        for(int i = 0; i < 6; i++){
-            componente comp = comp.crearComponente(opcion);
+    }else if(opcion == 2){
+
+        std::ifstream archivo("input_procesador.txt");
+        std::string name;
+        int year, price; 
+        float temp, frequency;
+
+        //ciclo para leer los datos de los archivos input de procesadores y nombres y crea los objetos componente
+        while(archivo >> name >> year >> price >> temp >> frequency){
+            componente comp(name,year,price,temp,frequency);
             componentes.push_back(comp);
         }
         
@@ -69,14 +77,15 @@ int main(){
             return componente::sortByAttributeProcesador(a, b, sortNum,orden);
         });
 
+        ofstream archivo_output("output.txt");
 
-        //este ciclo for crea componentes teniendo el cuenta el tipo que se la paso arriba, tiene una complejidad de (O(n)), aunque en ete caso en concreto, realmente seria (O(1)) ya que e hace un numero contante de iteraciones 
+        //este ciclo escribe la informacion de los objetos ya ordenados en un archivo .txt
         for(componente& componente : componentes){
-            cout << componente.toString(opcion)<<endl;
+            archivo_output << componente.toString(opcion)<<endl;
         }
     }
 
-*/
+
 }
 
 /*

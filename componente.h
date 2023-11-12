@@ -17,8 +17,6 @@ public:
 
     componente(std::string n,int y, int p, int max_g, int c_s);
 
-    //funcion para crear un vector de componentes con atributos aleatorios
-    componente crearComponente(int tipo);
 
     //funicion para sortear los objetos por atributo
     static bool sortByAttributeProcesador(const componente& a, const componente& b, int attribute, bool);
@@ -27,7 +25,7 @@ public:
     std::string toString(int tipo){
         ostringstream str;
         if(tipo == 2){
-            str<< "Name: "<< nameProcesador << " || Price: " << price << " || Year: " << year << " || Frequency: " << frequency << " || Temperature: " << temp;
+            str<< "Name: "<< nameProcesador << " || Price: " << price << " || Year: " << year << " || Frequency: " << frequency << " GHz" << " || Temperature: " << temp;
         }if(tipo == 1){
             str<< "Name:   "<< nameGPU << "   || Price: " << price << " || Year: " << year << " || Max Graphics: " << max_graphics << " || Clock Speed(MHz): " << clock_speed;
         }
@@ -79,7 +77,7 @@ componente::componente(std::string n,int y, int p, int max_g, int c_s){
 //funcion que ordena los obejtos componente dependiendo del tipo de atributo del objeto (o(1))
 bool componente::sortByAttributeProcesador(const componente& a, const componente& b, int attribute, bool orden){
  
-    if(orden){
+    if(!orden){
         if (attribute == 1) {
             return a.year < b.year;
         } else if (attribute == 2) {
