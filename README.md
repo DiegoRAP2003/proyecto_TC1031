@@ -18,3 +18,11 @@ Se modifico el main y la clase componente.h para poder hacer uso de otra estruct
 #### Funcion SortByAttribute():
 1. se agrego una bandera booleana para decidir la manera de ordenar los objetos.
 2. Cambio al codigo para ordenar los objetos de manera ascendente o descendente.
+
+## Avance 3
+
+### Cambios a main():
+
+1. Se agrego la lectura de archivos para crear los objetos, y la escritura en un archivo de output
+2. Cambio a la funcion de sort por atributo, se agrego una extra para poder usarse con los 2 tipos de componente
+3. Se agrego un nuevo componente(GPU) 
