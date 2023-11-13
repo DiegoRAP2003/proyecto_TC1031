@@ -26,3 +26,4 @@ Se modifico el main y la clase componente.h para poder hacer uso de otra estruct
 1. Se agrego la lectura de archivos para crear los objetos, y la escritura en un archivo de output
 2. Cambio a la funcion de sort por atributo, se agrego una extra para poder usarse con los 2 tipos de componente
 3. Se agrego un nuevo componente(GPU) 
+4. Codigo en python para crear inputs aleatorios
