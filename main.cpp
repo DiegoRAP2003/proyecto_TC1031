@@ -5,6 +5,7 @@
 #include "componente.h"
 #include <fstream>
 
+list<componente> filter(int f, list<componente> &l, int a);
 using namespace std;
 
 int main(){
@@ -49,6 +50,10 @@ int main(){
         for(componente& componente : componentes){
             archivo_output << componente.toString(opcion)<<endl;
         }
+
+        cout<<"Arhcivo output creado"<<endl;
+        cout<<"Adios";
+
         
 
     }else if(opcion == 2){
@@ -83,10 +88,15 @@ int main(){
         for(componente& componente : componentes){
             archivo_output << componente.toString(opcion)<<endl;
         }
+
+        cout<<"Arhcivo output creado"<<endl;
+        cout<<"Adios";
     }
 
 
+
 }
+
 
 /*
 teniendo en cuenta las estructuras de datos, los ciclos y los algoritmos de ordenamiento, el programa completo en promedio deberia de tener una complejidad de O(n log n), debido a mayormente a los 

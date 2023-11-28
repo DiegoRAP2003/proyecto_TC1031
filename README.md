@@ -27,3 +27,32 @@ Se modifico el main y la clase componente.h para poder hacer uso de otra estruct
 2. Cambio a la funcion de sort por atributo, se agrego una extra para poder usarse con los 2 tipos de componente
 3. Se agrego un nuevo componente(GPU) 
 4. Codigo en python para crear inputs aleatorios
+
+## Analisis Asintotico
+
+### Main
+
+### Declaracion de variables y estructuras
+
+1.  La declaracion de las listas y variables es de O(1)
+
+### Lectura de archivos y creacion de los objetos tipo componente
+
+1. Tanto para la creacion de procesadores como de GPUs se leen archivos de una forma lineal dado el tamanio del archivo, por lo que serian O(n)
+
+### Ordenamiento
+
+1. Los algoritmos de ordenamiento se implementan usando la libreria estandar std::sort, por lo que en esta seccion la complejidad es de O(n log n)
+
+### Escritura de archivo de salida
+
+1. Es un ciclo lineal de complejidad O(n)
+
+### Clase componente
+
+Todos los metodos de esta clase tienen una complejidad de O(1) ya que son constantes, exceptuando el metodo toString(), que tiene una complejidad de O(n) ya que es lineal.
+Por lo que esta clase en promedio deberia de tener una complejidad de O(n).
+  
+### Conclusion
+
+Tanto para la parte de GPUs como procesadores la complejidad seria de O(n log n), ya que las dos son dominadas por el algoritmo de ordenamiento
